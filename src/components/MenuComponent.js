@@ -5,20 +5,14 @@ class Menu extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            selectedDish: null
         };
-    }
-    onDishSelect(dish){
-        this.setState(
-            {selectedDish: dish}
-        )
     }
     
     render(){
         const menu= this.props.dishes.map((dish => {
             return(
                 <div key={dish.name} className="col-12 col-md-5 m-1">
-                    <Card key={dish.id} onClick={() => this.onDishSelect(dish)}>
+                    <Card key={dish.id} onClick={() => this.props.onClick(dish.id)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name}/>
                         <CardImgOverlay>
                             <CardTitle>{dish.name}</CardTitle>
@@ -32,7 +26,6 @@ class Menu extends React.Component{
                 <div className="row">
                     {menu}
                 </div>
-                <DishdetailComponent dishSelect={this.state.selectedDish}/>
             </div>
         );
     }
